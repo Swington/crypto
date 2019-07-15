@@ -56,5 +56,3 @@ class ShiftUnicodeEncryptor(EncryptorInterface):
             new_character = chr(new_unicode_number)
             output.append(new_character)
         return ''.join(output)
-
-
