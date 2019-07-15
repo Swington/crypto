@@ -1,36 +1,29 @@
-import builtins
-from unittest import TestCase, mock
+from unittest import TestCase
 
-from crypto import crypto_main
+from crypto import crypto_main, CryptoArgs
 
 
 class TestCrypto(TestCase):
-    @mock.patch.object(builtins, 'print')
-    @mock.patch.object(builtins, 'input')
-    def test_returns_valid_output_on_encryption(self, patched_input, patched_print):
-        patched_input.side_effect = ['enc', 'welcome to hyperskill', '5']
+    def test_returns_valid_output_on_encryption(self):
+        given_args = CryptoArgs(mode='enc', data='welcome to hyperskill', key=5)
         expected_output = "|jqhtrj%yt%m~ujwxpnqq"
 
-        crypto_main()
+        actual_output = crypto_main(given_args)
 
-        patched_print.assert_called_with(expected_output)
+        self.assertEqual(expected_output, actual_output)
 
-    @mock.patch.object(builtins, 'print')
-    @mock.patch.object(builtins, 'input')
-    def test_returns_valid_output_on_decryption(self, patched_input, patched_print):
-        patched_input.side_effect = ['dec', '|jqhtrj%yt%m~ujwxpnqq', '5']
+    def test_returns_valid_output_on_decryption(self):
+        given_args = CryptoArgs(mode='dec', data='|jqhtrj%yt%m~ujwxpnqq', key=5)
         expected_output = "welcome to hyperskill"
 
-        crypto_main()
+        actual_output = crypto_main(given_args)
 
-        patched_print.assert_called_with(expected_output)
+        self.assertEqual(expected_output, actual_output)
 
-    @mock.patch.object(builtins, 'print')
-    @mock.patch.object(builtins, 'input')
-    def test_returns_message_on_invalid_target_operation_type(self, patched_input, patched_print):
-        patched_input.side_effect = ['something', 'some string', 'some number']
+    def test_returns_message_on_invalid_target_operation_type(self):
+        given_args = CryptoArgs(mode="something", data="some string", key=10)
         expected_output = "Invalid target operation type"
 
-        crypto_main()
-
-        patched_print.assert_called_with(expected_output)
+        with self.assertRaises(Exception) as ec:
+            _ = crypto_main(given_args)
+        self.assertEqual(expected_output, ec.exception.args[0])
