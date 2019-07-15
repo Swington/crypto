@@ -24,7 +24,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            coverage run -m unittest discover ./tests --verbose
+            coverage run -m tests
 
       - run:
           name: run mypy
@@ -36,5 +36,6 @@ jobs:
           name: upload test coverage data
           command: |
             . venv/bin/activate
-            pip install codecov
-            codecov
+            pip install codacy-coverage
+            coverage xml
+            python-codacy-coverage -r coverage.xml
