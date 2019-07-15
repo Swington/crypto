@@ -3,13 +3,13 @@ from abc import abstractmethod, ABC
 
 class DecryptorInterface(ABC):
     @abstractmethod
-    def decrypt(self, input_value: str, key: int):
+    def decrypt(self, input_value: str, key: int) -> str:
         pass
 
 
 class ShiftUnicodeDecryptor(DecryptorInterface):
     @classmethod
-    def decrypt(cls, input_value: str, key: int):
+    def decrypt(cls, input_value: str, key: int) -> str:
         output = []
         for character in input_value:
             unicode_number = ord(character)
