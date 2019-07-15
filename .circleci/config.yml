@@ -27,6 +27,12 @@ jobs:
             coverage run -m unittest discover ./tests --verbose
 
       - run:
+          name: run mypy
+          command: |
+            . venv/bin/activate
+            mypy ./ --config-file ./mypy.ini
+
+      - run:
           name: upload test coverage data
           command: |
             . venv/bin/activate
