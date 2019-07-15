@@ -13,7 +13,7 @@ class EncryptorInterface(ABC):
 
 class SwitchEncryptor(EncryptorInterface):
     @classmethod
-    def encrypt(cls, input_value, **kwargs):
+    def encrypt(cls, input_value, key=None):
         output = []
         for sign in input_value:
             if sign.lower() not in ASCII_LOWERCASE:
