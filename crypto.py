@@ -1,5 +1,5 @@
 from decryptors import ShiftUnicodeDecryptor
-from encryptors import ShiftEncryptor, ShiftUnicodeEncryptor
+from encryptors import ShiftUnicodeEncryptor
 
 
 def crypto_main():
