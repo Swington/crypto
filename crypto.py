@@ -2,7 +2,7 @@ from decryptors import ShiftUnicodeDecryptor
 from encryptors import ShiftUnicodeEncryptor
 
 
-def crypto_main():
+def crypto_main() -> None:
     target_operation = input()
     if target_operation.lower() == "enc":
         function = ShiftUnicodeEncryptor.encrypt
