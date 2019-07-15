@@ -44,3 +44,17 @@ class ShiftEncryptor(EncryptorInterface):
             return new_letter_position
         else:
             return new_letter_position - (ALPHABET_LENGTH + 1)
+
+
+class ShiftUnicodeEncryptor(EncryptorInterface):
+    @classmethod
+    def encrypt(cls, input_value: str, key: int) -> str:
+        output = []
+        for character in input_value:
+            unicode_number = ord(character)
+            new_unicode_number = unicode_number + key
+            new_character = chr(new_unicode_number)
+            output.append(new_character)
+        return ''.join(output)
+
+
