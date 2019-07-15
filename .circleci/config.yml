@@ -36,6 +36,5 @@ jobs:
           name: upload test coverage data
           command: |
             . venv/bin/activate
-            pip install codacy-coverage
-            coverage xml
-            python-codacy-coverage -r coverage.xml
+            pip install codecov
+            codecov

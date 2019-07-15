@@ -6,7 +6,6 @@ verify_ssl = true
 [dev-packages]
 coverage = "==5.0a5"
 mypy = "==0.720"
-codacy-coverage = "==1.3.11"
 
 [packages]
 
