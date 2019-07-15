@@ -9,12 +9,13 @@ def crypto_main():
     elif target_operation.lower() == "dec":
         function = ShiftUnicodeDecryptor.decrypt
     else:
-        return "Invalid target operation type"
+        print("Invalid target operation type")
+        return
     text = input()
     number = int(input())
     output_text = function(text, number)
-    return output_text
+    print(output_text)
 
 
 if __name__ == '__main__':
-    print(crypto_main())
+    crypto_main()
